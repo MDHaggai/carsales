@@ -1,0 +1,564 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add this after your imports and before other styles */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  background-color: rgb(17, 16, 16); /* Add this line to test */
+  padding-top: 0; /* Remove the padding that was pushing the navbar down */
+  overflow-x: hidden;
+}
+
+a.active hr{
+    display: block;
+}
+
+*{
+    font-family: Outfit;
+}
+
+.prata-regular {
+    font-family: "Prata", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  ::-webkit-scrollbar{
+    display: none;
+  }
+  
+  @media (max-width:640px) {
+    a.active{
+        background-color: black;
+        color: white;
+    }
+  }
+
+  /* Animated gradient text */
+.gradient-text {
+  background: linear-gradient(to right, #ffffff, #60A5FA);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientAnimation 3s ease infinite;
+}
+@keyframes gradientAnimation {
+  0% { background-position: 0%; }
+  50% { background-position: 100%; }
+  100% { background-position: 0%; }
+}
+
+/* Optional: Add this if you're using dark mode in some sections */
+.dark .nav-bar {
+  @apply bg-[#fafafa] !important;
+}
+
+/* Add to your global CSS file */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* Add these styles for the mobile filter scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Add to your global CSS */
+.grid {
+  grid-auto-rows: 1fr;
+}
+
+.grid > * {
+  height: 100%;
+}
+
+/* Add these styles to your global CSS */
+.nav-glow {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-size: 200% 100%;
+  animation: gradientMove 8s ease infinite;
+  z-index: 50;
+}
+
+.nav-glow::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: blur(10px);
+  opacity: 0.7;
+  z-index: -1;
+}
+
+.nav-item-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item-hover::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.nav-item-hover:hover::after {
+  left: 100%;
+}
+
+/* Add to your global CSS */
+.nav-item-glow {
+  box-shadow: 0 0 0 rgba(59, 130, 246, 0);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.nav-item-glow:hover {
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+}
+
+/* Enhanced hover effect for nav items */
+.group:hover .nav-item-glow {
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(59, 130, 246, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(59, 130, 246, 0);
+  }
+}
+
+/* Add to your global CSS file */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+.float-animation {
+  animation: float 3s ease-in-out infinite;
+}
+
+.gradient-mask {
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+}
+
+@layer components {
+  .nav-link-hover {
+    @apply relative overflow-hidden;
+  }
+
+  .nav-link-hover::after {
+    @apply content-[''] absolute bottom-0 left-0 w-full h-0.5 bg-black 
+           transform scale-x-0 transition-transform duration-300 origin-right;
+  }
+
+  .nav-link-hover:hover::after {
+    @apply transform scale-x-100 origin-left;
+  }
+
+  .icon-hover-effect {
+    @apply relative overflow-hidden transition-all duration-300 ease-out;
+  }
+
+  .icon-hover-effect::after {
+    @apply content-[''] absolute -bottom-1 left-1/2 transform -translate-x-1/2
+           w-1 h-1 bg-black rounded-full opacity-0 transition-opacity duration-300;
+  }
+
+  .icon-hover-effect:hover::after {
+    @apply opacity-100;
+  }
+}
+
+/* Add these styles for better filter panel positioning */
+.filter-panel-overlay {
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+}
+
+/* Improved scrollbar styling */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(155, 155, 155, 0.5) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(155, 155, 155, 0.5);
+  border-radius: 20px;
+}
+
+/* Add these styles for the filter panel */
+.filter-panel {
+  @apply bg-white shadow-xl rounded-lg overflow-hidden;
+}
+
+/* Mobile filter panel animation */
+@keyframes slideIn {
+  from { transform: translateY(-100%); }
+  to { transform: translateY(0); }
+}
+
+@keyframes slideOut {
+  from { transform: translateY(0); }
+  to { transform: translateY(-100%); }
+}
+
+/* Add these styles for the filter panel scrollbar */
+.filter-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+.filter-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filter-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.filter-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+}
+
+/* Update the navbar gradient animation */
+@keyframes gradientMove {
+  0% {
+    background-position: 100% 50%;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(0, 0, 0, 0.95) 45%,
+      rgba(0, 0, 0, 0.95) 55%,
+      rgba(255, 255, 255, 0.95)
+    );
+  }
+  100% {
+    background-position: -100% 50%;
+    background-image: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.95),
+      rgba(0, 0, 0, 0.95) 45%,
+      rgba(0, 0, 0, 0.95) 55%,
+      rgba(255, 255, 255, 0.95)
+    );
+  }
+}
+
+/* Remove or update the existing shine animation */
+.nav-glow::before {
+  display: none; /* Remove the shine effect */
+}
+
+@keyframes gradientSlide {
+  0% {
+    background-position: 0% 50%;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.95),
+      rgba(0, 0, 0, 0.95) 50%,
+      rgba(255, 255, 255, 0.95)
+    );
+  }
+  50% {
+    background-position: 100% 50%;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.95),
+      rgba(0, 0, 0, 0.95) 50%,
+      rgba(255, 255, 255, 0.95)
+    );
+  }
+  100% {
+    background-position: 0% 50%;
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.95),
+      rgba(0, 0, 0, 0.95) 50%,
+      rgba(255, 255, 255, 0.95)
+    );
+  }
+}
+
+.nav-gradient {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-size: 200% 100%;
+  animation: gradientMove 8s linear infinite;
+  z-index: 9999;
+  backdrop-filter: blur(8px);
+}
+
+.nav-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--x, 50%) var(--y, 50%),
+    rgba(255, 255, 255, 0.4) 0%,
+    transparent 50%
+  );
+  pointer-events: none;
+  opacity: 0.5;
+  z-index: 1;
+}
+
+.nav-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* Improve hover states visibility */
+.nav-item {
+  position: relative;
+  z-index: 3;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover {
+  transform: translateY(-2px);
+}
+
+/* Add these styles for text color transition */
+.nav-text-light {
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.nav-text-dark {
+  color: black;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+/* Add these styles for text color transition */
+.nav-text-light {
+  color: white;
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.nav-text-dark {
+  color: black;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* Add this for content overlay */
+.content-overlay {
+  background-color: rgba(255, 255, 255, 0.9); /* Add this line */
+  backdrop-filter: blur(5px);
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+
+/* Add a new wrapper class for the background */
+/* Remove this class */
+/* .app-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('./assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1;
+} */
+
+/* Add new utility classes if needed */
+.bg-blur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* Add these after your existing styles */
+
+/* Ensure toasts are above navbar */
+.Toastify__toast-container {
+  z-index: 99999 !important;
+  position: fixed !important;
+  padding-top: 1rem !important;
+}
+
+/* Adjust main content to be full width */
+main {
+  width: 100vw;
+  max-width: 100%;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+/* Adjust container padding for specific pages */
+.page-container {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* Add padding to content where needed */
+.content-wrapper {
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+}
+
+.image-hover {
+  transition: transform 0.3s ease-in-out;
+}
+
+.image-hover:hover {
+  transform: scale(1.05);
+}
+
+.glass-effect {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #60A5FA, #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .grid-cols-1 {
+    gap: 2rem;
+  }
+  
+  .aspect-square {
+    height: 300px;
+  }
+}
+
+.prose-invert {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.backdrop-blur-md {
+  backdrop-filter: blur(12px);
+}
+
+.text-gradient-blue {
+  background: linear-gradient(135deg, #60A5FA, #3B82F6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.prose-custom {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.prose-custom strong {
+  color: #60A5FA;
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px);
+}
+
+.prose-lg {
+  font-size: 1.125rem;
+  line-height: 1.8;
+}
+
+.prose-lg p {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.glow {
+  filter: drop-shadow(0 0 30px rgba(96, 165, 250, 0.3));
+}
+
+/* Add these styles for the tracking modal header */
+.group:hover .group-hover\:rotate-90 {
+  transform: rotate(90deg);
+}
+
+.tracking-modal-header {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.fedex-logo {
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.05));
+}
+
+/* Add these styles for better modal positioning and animation */
+.fixed.inset-0 {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-bottom: 2rem;
+}
+
+.modal-content {
+  min-height: min-content;
+  max-height: calc(100vh - 8rem); /* Ensures modal doesn't overflow screen */
+}
+
+.modal-container {
+  min-height: calc(100vh - 6rem);
+  padding-bottom: 2rem;
+}

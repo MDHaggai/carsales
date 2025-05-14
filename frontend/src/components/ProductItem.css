@@ -1,0 +1,45 @@
+/* ProductItem.css */
+
+/* Ensures smooth opacity transition for the hover effect */
+.group:hover .opacity-0 {
+    opacity: 1;
+  }
+  
+  /* Ensures the tooltip text smoothly appears */
+  .transition-opacity {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
+  /* Styling for the product item wrapper */
+  .relative {
+    position: relative;
+  }
+  
+  /* Styling for the overlay icons */
+  .absolute {
+    position: absolute;
+  }
+  
+  /* Centering the icons in the overlay */
+  .flex {
+    display: flex;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-center {
+    justify-content: center;
+  }
+  
+  /* Styling for the icon's hover state */
+  .hover\:text-blue-500:hover {
+    color: #3B82F6; /* Tailwind's blue-500 color */
+  }
+  
+  /* Styling for the tooltip */
+  .group-hover\:opacity-100:hover {
+    opacity: 1;
+  }
+  
